@@ -65,6 +65,20 @@
         <dd>
             @Html.DisplayFor(model => model.SizeId)
         </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Colors)
+        </dt>
+
+        @if (Model.Colors != null)
+        {
+            foreach (var item in Model.Colors)
+            {
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </dd>
+            }
+        }
 
     </dl>
 </div>
