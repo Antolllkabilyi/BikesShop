@@ -5,6 +5,10 @@ namespace BikesShop.Models
 {
     public class BicycleContext : DbContext
     {
+        public BicycleContext()
+        {
+            Configuration.LazyLoadingEnabled = false;
+        }
 
         public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Brand> Brands { get; set; }
@@ -13,7 +17,7 @@ namespace BikesShop.Models
         public DbSet<BicycleSize> BicycleSize { get; set; }
         public DbSet<BicycleColor> BicycleColors { get; set; }
         public DbSet<Fork> Forks { get; set; }
-    
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -21,6 +25,6 @@ namespace BikesShop.Models
 
             modelBuilder.Entity<Bicycle>().HasMany(b => b.Colors);
         }
-       
+
     }
 }
