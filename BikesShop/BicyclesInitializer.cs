@@ -62,6 +62,17 @@ namespace BikesShop
             forks.ForEach(s => context.Forks.Add(s));
             context.SaveChanges();
 
+            var sizes = new List<BicycleSize>
+            {
+                new BicycleSize{Name = "S" , Size = 11.5},
+                new BicycleSize{Name = "M" , Size = 16},
+                new BicycleSize{Name = "L" , Size = 19.5},
+                new BicycleSize{Name = "XL" , Size = 21}
+            };
+
+            sizes.ForEach(s => context.BicycleSize.Add(s));
+            context.SaveChanges();
+
             var bicycles = new List<Bicycle>
             {
                 new Bicycle
@@ -72,6 +83,7 @@ namespace BikesShop
                     GenderId = 2,
                     FrameMaterialId = 3,
                     ForkId = 1,
+                    SizeId = 2,
                     Colors = new List<BicycleColor>
                     {
                         colors.Find(c=>c.Id==1),
@@ -87,6 +99,7 @@ namespace BikesShop
                     GenderId = 4,
                     FrameMaterialId = 2,
                     ForkId = 2,
+                    SizeId = 4,
                     Colors = new List<BicycleColor>
                     {
                         colors.Find(c=>c.Id==3)

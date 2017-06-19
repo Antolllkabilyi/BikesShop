@@ -151,6 +151,7 @@
     <Compile Include="Models\Bicycle.cs" />
     <Compile Include="Models\BicycleColor.cs" />
     <Compile Include="Models\BicycleContext.cs" />
+    <Compile Include="Models\BicycleSize.cs" />
     <Compile Include="Models\BicycleType.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Fork.cs" />

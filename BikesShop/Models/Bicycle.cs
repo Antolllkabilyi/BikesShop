@@ -26,6 +26,9 @@ namespace BikesShop.Models
         public int? ForkId { get; set; }
         public virtual Fork Fork { get; set; }
 
+        public int? SizeId { get; set; }
+        public virtual BicycleSize Size { get; set; }
+
         public virtual List<BicycleColor> Colors { get; set; }
       
     }
