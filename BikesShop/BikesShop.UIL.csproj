@@ -144,6 +144,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BicyclesInitializer.cs" />
+    <Compile Include="Controllers\BicycleColorsController.cs" />
     <Compile Include="Controllers\BicyclesController.cs" />
     <Compile Include="Controllers\ForksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -213,6 +214,11 @@
     <Content Include="Views\Forks\Details.cshtml" />
     <Content Include="Views\Forks\Edit.cshtml" />
     <Content Include="Views\Forks\Index.cshtml" />
+    <Content Include="Views\BicycleColors\Create.cshtml" />
+    <Content Include="Views\BicycleColors\Delete.cshtml" />
+    <Content Include="Views\BicycleColors\Details.cshtml" />
+    <Content Include="Views\BicycleColors\Edit.cshtml" />
+    <Content Include="Views\BicycleColors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

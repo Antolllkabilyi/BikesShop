@@ -19,7 +19,7 @@ namespace BikesShop.BLL.Services
 
         public Fork GetById(int? id)
         {
-            if (id == null || id < 0 || id >= _db.Forks.Count())
+            if (id == null || id < 0 || id >= _forks.Count())
                 return null;
 
             return _forks.Find(id);
@@ -32,7 +32,10 @@ namespace BikesShop.BLL.Services
 
         public IEnumerable<Fork> GetPartFromIndex(int index, int count)
         {
-            throw new System.NotImplementedException();
+            if (index < 0 || count < 0 || index > _forks.Count())
+                return null;
+
+            return _forks.OrderBy(f=>f.Id).Skip(index).Take(count);
         }
 
         public void Create(Fork fork)

@@ -40,6 +40,8 @@ namespace BikesShop.Controllers
             ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name");
             ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material");
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name");
+            ViewBag.SizeId = new SelectList(db.BicycleSize, "BicycleSizeId", "Name");
+            ViewBag.Colors = new SelectList(db.BicycleColors, "Id", "Name");
             return View();
         }
 
@@ -62,6 +64,8 @@ namespace BikesShop.Controllers
             ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", bicycle.GenderId);
             ViewBag.SizeId = new SelectList(db.BicycleSize, "Id", "Name", bicycle.SizeId);
+            ViewBag.Colors = new SelectList(db.BicycleColors, "Id", "Name", bicycle.Colors);
+          
             return View(bicycle);
         }
 

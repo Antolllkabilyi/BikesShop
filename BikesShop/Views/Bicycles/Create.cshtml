@@ -65,7 +65,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SizeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("SizeId", null, htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownList("SizeId", null, htmlAttributes: new { @class = "form-control" })
+                @*@Html.EditorFor(model => model.SizeId, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.SizeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Colors, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Colors", null, htmlAttributes: new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.SizeId, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.SizeId, "", new { @class = "text-danger" })
             </div>
