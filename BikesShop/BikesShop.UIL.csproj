@@ -145,6 +145,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BicyclesInitializer.cs" />
     <Compile Include="Controllers\BicyclesController.cs" />
+    <Compile Include="Controllers\ForksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,11 @@
     <Content Include="Views\Bicycles\Details.cshtml" />
     <Content Include="Views\Bicycles\Edit.cshtml" />
     <Content Include="Views\Bicycles\Index.cshtml" />
+    <Content Include="Views\Forks\Create.cshtml" />
+    <Content Include="Views\Forks\Delete.cshtml" />
+    <Content Include="Views\Forks\Details.cshtml" />
+    <Content Include="Views\Forks\Edit.cshtml" />
+    <Content Include="Views\Forks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
