@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BikesShop.Models
+namespace BikesShop.DAL.Models
 {
     public class Bicycle
     {

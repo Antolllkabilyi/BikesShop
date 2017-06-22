@@ -1,4 +1,4 @@
-﻿namespace BikesShop.Models
+﻿namespace BikesShop.DAL.Models
 {
     public class FrameMaterial
     {

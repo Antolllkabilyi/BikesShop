@@ -149,15 +149,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bicycle.cs" />
-    <Compile Include="Models\BicycleColor.cs" />
-    <Compile Include="Models\BicycleContext.cs" />
-    <Compile Include="Models\BicycleSize.cs" />
-    <Compile Include="Models\BicycleType.cs" />
-    <Compile Include="Models\Brand.cs" />
-    <Compile Include="Models\Fork.cs" />
-    <Compile Include="Models\FrameMaterial.cs" />
-    <Compile Include="Models\Gender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -228,6 +220,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikesShop.BLL\BikesShop.BLL.csproj">
+      <Project>{5460593e-4179-4c92-ac3d-702d4430dd0a}</Project>
+      <Name>BikesShop.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikesShop.DAL\BikesShop.DAL.csproj">
+      <Project>{97971fbb-c88e-4cc7-83f9-adeebe97ea76}</Project>
+      <Name>BikesShop.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,15 +1,11 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace BikesShop.Models
+namespace BikesShop.DAL.Models
 {
     public class BicycleContext : DbContext
     {
-        public BicycleContext()
-        {
-            Configuration.LazyLoadingEnabled = false;
-        }
-
+       
         public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Gender> Genders { get; set; }

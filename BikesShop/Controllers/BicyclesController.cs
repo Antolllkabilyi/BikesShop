@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using BikesShop.Models;
+using BikesShop.DAL.Models;
+
 
 namespace BikesShop.Controllers
 {
@@ -64,6 +61,7 @@ namespace BikesShop.Controllers
             ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name", bicycle.ForkId);
             ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
             ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", bicycle.GenderId);
+            ViewBag.SizeId = new SelectList(db.BicycleSize, "Id", "Name", bicycle.SizeId);
             return View(bicycle);
         }
 

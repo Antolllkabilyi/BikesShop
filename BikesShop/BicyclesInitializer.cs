@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using BikesShop.Models;
+using BikesShop.DAL.Models;
+
 
 namespace BikesShop
 {
