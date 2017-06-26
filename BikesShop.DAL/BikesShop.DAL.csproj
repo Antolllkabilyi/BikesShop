@@ -48,16 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Bicycle.cs" />
-    <Compile Include="Models\BicycleColor.cs" />
-    <Compile Include="Models\BicycleContext.cs" />
-    <Compile Include="Models\BicycleSize.cs" />
-    <Compile Include="Models\BicycleType.cs" />
-    <Compile Include="Models\Brand.cs" />
-    <Compile Include="Models\Fork.cs" />
-    <Compile Include="Models\FrameMaterial.cs" />
-    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Entities\Bicycle.cs" />
+    <Compile Include="Entities\BicycleColor.cs" />
+    <Compile Include="EF\BicycleContext.cs" />
+    <Compile Include="Entities\BicycleSize.cs" />
+    <Compile Include="Entities\BicycleType.cs" />
+    <Compile Include="Entities\Brand.cs" />
+    <Compile Include="Entities\Fork.cs" />
+    <Compile Include="Entities\FrameMaterial.cs" />
+    <Compile Include="Entities\Gender.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BicycleColorRepository.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\ForkRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

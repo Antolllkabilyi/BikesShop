@@ -1,13 +1,19 @@
 ﻿using System.Net;
 using System.Web.Mvc;
+using BikesShop.BLL.Interfaces;
 using BikesShop.BLL.Services;
-using BikesShop.DAL.Models;
+using BikesShop.DAL.Entities;
 
 namespace BikesShop.Controllers
 {
     public class BicycleColorsController : Controller
     {
-        private readonly ColorsService _colorsService = new ColorsService();
+        private readonly IService<BicycleColor> _colorsService;
+
+        public BicycleColorsController(IService<BicycleColor> colorsService)
+        {
+            _colorsService = colorsService;
+        }
 
         // GET: BicycleColors
         public ActionResult Index()

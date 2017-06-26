@@ -2,7 +2,8 @@
 using System.Data.Entity;
 using System.Linq;
 using BikesShop.BLL.Interfaces;
-using BikesShop.DAL.Models;
+using BikesShop.DAL.EF;
+using BikesShop.DAL.Entities;
 
 namespace BikesShop.BLL.Services
 {

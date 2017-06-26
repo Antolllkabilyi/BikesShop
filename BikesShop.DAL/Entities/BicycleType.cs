@@ -1,6 +1,6 @@
-﻿namespace BikesShop.DAL.Models
+﻿namespace BikesShop.DAL.Entities
 {
-    public class BicycleColor
+    public class BicycleType
     {
         public int Id { get; set; }
         public string Name { get; set; }

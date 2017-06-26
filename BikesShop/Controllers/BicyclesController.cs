@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using BikesShop.DAL.Models;
+using BikesShop.DAL.EF;
+using BikesShop.DAL.Entities;
 
 
 namespace BikesShop.Controllers

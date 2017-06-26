@@ -1,4 +1,4 @@
-﻿namespace BikesShop.DAL.Models
+﻿namespace BikesShop.DAL.Entities
 {
     public class BicycleSize
     {

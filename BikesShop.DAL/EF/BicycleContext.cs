@@ -1,7 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using BikesShop.DAL.Entities;
 
-namespace BikesShop.DAL.Models
+namespace BikesShop.DAL.EF
 {
     public class BicycleContext : DbContext
     {
@@ -14,6 +15,13 @@ namespace BikesShop.DAL.Models
         public DbSet<BicycleColor> BicycleColors { get; set; }
         public DbSet<Fork> Forks { get; set; }
 
+        public BicycleContext(string connectionString) : base(connectionString)
+        {
+        }
+
+        public BicycleContext() : base("name=BicycleContext")
+        {
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
