@@ -10,12 +10,12 @@ namespace BikesShop.Controllers
 {
     public class BicyclesController : Controller
     {
-        private BicycleContext db = new BicycleContext();
+        private readonly BicycleContext _db = new BicycleContext();
 
         // GET: Bicycles
         public ActionResult Index()
         {
-            var bicycles = db.Bicycles.Include(b => b.Brand).Include(b => b.Fork).Include(b => b.FrameMaterial).Include(b => b.Gender);
+            var bicycles = _db.Bicycles.Include(b => b.Brand).Include(b => b.Fork).Include(b => b.FrameMaterial).Include(b => b.Gender);
             return View(bicycles.ToList());
         }
 
@@ -26,7 +26,7 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bicycle bicycle = db.Bicycles.Find(id);
+            Bicycle bicycle = _db.Bicycles.Find(id);
             if (bicycle == null)
             {
                 return HttpNotFound();
@@ -37,12 +37,12 @@ namespace BikesShop.Controllers
         // GET: Bicycles/Create
         public ActionResult Create()
         {
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name");
-            ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name");
-            ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material");
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name");
-            ViewBag.SizeId = new SelectList(db.BicycleSize, "BicycleSizeId", "Name");
-            ViewBag.Colors = new SelectList(db.BicycleColors, "Id", "Name");
+            ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name");
+            ViewBag.ForkId = new SelectList(_db.Forks, "Id", "Name");
+            ViewBag.FrameMaterialId = new SelectList(_db.FrameMaterials, "Id", "Material");
+            ViewBag.GenderId = new SelectList(_db.Genders, "Id", "Name");
+            ViewBag.SizeId = new SelectList(_db.BicycleSize, "BicycleSizeId", "Name");
+            ViewBag.Colors = new SelectList(_db.BicycleColors, "Id", "Name");
             return View();
         }
 
@@ -55,17 +55,17 @@ namespace BikesShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Bicycles.Add(bicycle);
-                db.SaveChanges();
+                _db.Bicycles.Add(bicycle);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", bicycle.BrandId);
-            ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name", bicycle.ForkId);
-            ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", bicycle.GenderId);
-            ViewBag.SizeId = new SelectList(db.BicycleSize, "Id", "Name", bicycle.SizeId);
-            ViewBag.Colors = new SelectList(db.BicycleColors, "Id", "Name", bicycle.Colors);
+            ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", bicycle.BrandId);
+            ViewBag.ForkId = new SelectList(_db.Forks, "Id", "Name", bicycle.ForkId);
+            ViewBag.FrameMaterialId = new SelectList(_db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
+            ViewBag.GenderId = new SelectList(_db.Genders, "Id", "Name", bicycle.GenderId);
+            ViewBag.SizeId = new SelectList(_db.BicycleSize, "Id", "Name", bicycle.SizeId);
+            ViewBag.Colors = new SelectList(_db.BicycleColors, "Id", "Name", bicycle.Colors);
           
             return View(bicycle);
         }
@@ -77,15 +77,15 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bicycle bicycle = db.Bicycles.Find(id);
+            Bicycle bicycle = _db.Bicycles.Find(id);
             if (bicycle == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", bicycle.BrandId);
-            ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name", bicycle.ForkId);
-            ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", bicycle.GenderId);
+            ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", bicycle.BrandId);
+            ViewBag.ForkId = new SelectList(_db.Forks, "Id", "Name", bicycle.ForkId);
+            ViewBag.FrameMaterialId = new SelectList(_db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
+            ViewBag.GenderId = new SelectList(_db.Genders, "Id", "Name", bicycle.GenderId);
             return View(bicycle);
         }
 
@@ -98,14 +98,14 @@ namespace BikesShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bicycle).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(bicycle).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BrandId = new SelectList(db.Brands, "Id", "Name", bicycle.BrandId);
-            ViewBag.ForkId = new SelectList(db.Forks, "Id", "Name", bicycle.ForkId);
-            ViewBag.FrameMaterialId = new SelectList(db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
-            ViewBag.GenderId = new SelectList(db.Genders, "Id", "Name", bicycle.GenderId);
+            ViewBag.BrandId = new SelectList(_db.Brands, "Id", "Name", bicycle.BrandId);
+            ViewBag.ForkId = new SelectList(_db.Forks, "Id", "Name", bicycle.ForkId);
+            ViewBag.FrameMaterialId = new SelectList(_db.FrameMaterials, "Id", "Material", bicycle.FrameMaterialId);
+            ViewBag.GenderId = new SelectList(_db.Genders, "Id", "Name", bicycle.GenderId);
             return View(bicycle);
         }
 
@@ -116,7 +116,7 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Bicycle bicycle = db.Bicycles.Find(id);
+            Bicycle bicycle = _db.Bicycles.Find(id);
             if (bicycle == null)
             {
                 return HttpNotFound();
@@ -129,9 +129,9 @@ namespace BikesShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Bicycle bicycle = db.Bicycles.Find(id);
-            db.Bicycles.Remove(bicycle);
-            db.SaveChanges();
+            Bicycle bicycle = _db.Bicycles.Find(id);
+            _db.Bicycles.Remove(bicycle);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -139,7 +139,7 @@ namespace BikesShop.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
