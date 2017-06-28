@@ -1,4 +1,4 @@
-﻿@model BikesShop.DAL.Entities.Bicycle
+﻿@model BikesShop.DAL.Entities.BicycleEntity
 
 @{
     ViewBag.Title = "Create";
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Bicycle</h4>
+        <h4>BicycleEntity</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

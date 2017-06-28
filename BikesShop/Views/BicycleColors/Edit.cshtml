@@ -1,4 +1,4 @@
-﻿@model BikesShop.DAL.Entities.BicycleColor
+﻿@model BikesShop.Models.BicycleColorViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>BicycleColors</h4>
+        <h4>BicycleColorEntitys</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

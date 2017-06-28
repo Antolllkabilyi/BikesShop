@@ -1,16 +1,17 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web.Mvc;
+using BikesShop.BLL.DTO;
 using BikesShop.BLL.Interfaces;
-using BikesShop.BLL.Services;
-using BikesShop.DAL.Entities;
+using BicycleColorViewModel = BikesShop.Models.BicycleColorViewModel;
 
 namespace BikesShop.Controllers
 {
     public class BicycleColorsController : Controller
     {
-        private readonly IService<BicycleColor> _colorsService;
+        private readonly IColorService _colorsService;
 
-        public BicycleColorsController(IService<BicycleColor> colorsService)
+        public BicycleColorsController(IColorService colorsService)
         {
             _colorsService = colorsService;
         }
@@ -18,7 +19,18 @@ namespace BikesShop.Controllers
         // GET: BicycleColors
         public ActionResult Index()
         {
-            return View(_colorsService.GetAll());
+            var colors = new List<BicycleColorViewModel>();
+            var dbcolors = _colorsService.GetAll();
+            foreach (var color in dbcolors)
+            {
+                colors.Add(new BicycleColorViewModel
+                {
+                    Id = color.Id,
+                    Name = color.Name
+                });
+            }
+
+            return View(colors);
         }
 
         // GET: BicycleColors/Details/5
@@ -28,12 +40,21 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BicycleColor bicycleColor = _colorsService.GetById(id);
+
+            var bicycleColor = _colorsService.GetById(id);
+
+
             if (bicycleColor == null)
             {
                 return HttpNotFound();
             }
-            return View(bicycleColor);
+
+            BicycleColorViewModel color = new BicycleColorViewModel
+            {
+                Id = bicycleColor.Id,
+                Name = bicycleColor.Name
+            };
+            return View(color);
         }
 
         // GET: BicycleColors/Create
@@ -47,11 +68,17 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] BicycleColor bicycleColor)
+        public ActionResult Create([Bind(Include = "Id,Name")] BicycleColorViewModel bicycleColor)
         {
             if (ModelState.IsValid)
             {
-                _colorsService.Create(bicycleColor);
+                BicycleColorDTO color = new BicycleColorDTO
+                {
+                    Id = bicycleColor.Id,
+                    Name = bicycleColor.Name
+                };
+
+                _colorsService.Create(color);
                 return RedirectToAction("Index");
             }
 
@@ -65,12 +92,21 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BicycleColor bicycleColor = _colorsService.GetById(id);
+
+            var bicycleColor = _colorsService.GetById(id);
+
             if (bicycleColor == null)
             {
                 return HttpNotFound();
             }
-            return View(bicycleColor);
+
+            BicycleColorViewModel color = new BicycleColorViewModel
+            {
+                Id = bicycleColor.Id,
+                Name = bicycleColor.Name
+            };
+
+            return View(color);
         }
 
         // POST: BicycleColors/Edit/5
@@ -78,11 +114,17 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] BicycleColor bicycleColor)
+        public ActionResult Edit([Bind(Include = "Id,Name")] BicycleColorViewModel bicycleColor)
         {
             if (ModelState.IsValid)
             {
-                _colorsService.Update(bicycleColor);
+                BicycleColorDTO color = new BicycleColorDTO
+                {
+                    Id = bicycleColor.Id,
+                    Name = bicycleColor.Name
+                };
+                _colorsService.Update(color);
+
                 return RedirectToAction("Index");
             }
             return View(bicycleColor);
@@ -95,12 +137,21 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BicycleColor bicycleColor = _colorsService.GetById(id);
+
+            var bicycleColor = _colorsService.GetById(id);
+
             if (bicycleColor == null)
             {
                 return HttpNotFound();
             }
-            return View(bicycleColor);
+
+            BicycleColorViewModel color = new BicycleColorViewModel
+            {
+                Id = bicycleColor.Id,
+                Name = bicycleColor.Name
+            };
+          
+            return View(color);
         }
 
         // POST: BicycleColors/Delete/5

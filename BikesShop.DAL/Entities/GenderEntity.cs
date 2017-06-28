@@ -1,6 +1,6 @@
 ﻿namespace BikesShop.DAL.Entities
 {
-    public class BicycleType
+    public class GenderEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

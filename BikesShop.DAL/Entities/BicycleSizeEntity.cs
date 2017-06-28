@@ -1,8 +1,8 @@
 ﻿namespace BikesShop.DAL.Entities
 {
-    public class BicycleSize
+    public class BicycleSizeEntity
     {
-        public int BicycleSizeId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public double Size { get; set; }
     }

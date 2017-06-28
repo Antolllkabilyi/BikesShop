@@ -164,8 +164,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BicycleColorViewModel.cs" />
+    <Compile Include="Models\BicycleViewModel.cs" />
+    <Compile Include="Models\BicycleSizeViewModel.cs" />
+    <Compile Include="Models\BicycleTypeViewModel.cs" />
+    <Compile Include="Models\BrandViewModel.cs" />
+    <Compile Include="Models\ForkViewModel.cs" />
+    <Compile Include="Models\FrameViewModel.cs" />
+    <Compile Include="Models\GenderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -236,7 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

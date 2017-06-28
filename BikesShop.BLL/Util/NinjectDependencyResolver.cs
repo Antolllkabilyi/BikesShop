@@ -4,9 +4,11 @@ using System.Web.Mvc;
 using BikesShop.BLL.Interfaces;
 using BikesShop.BLL.Services;
 using BikesShop.DAL.Entities;
+using BikesShop.DAL.Interfaces;
+using BikesShop.DAL.Repositories;
 using Ninject;
 
-namespace BikesShop.Util
+namespace BikesShop.BLL.Util
 {
     public class NinjectDependencyResolver : IDependencyResolver
     {
@@ -26,8 +28,10 @@ namespace BikesShop.Util
         }
         private void AddBindings()
         {
-            _kernel.Bind<IService<BicycleColor>>().To<ColorsService>();
-            _kernel.Bind<IService<Fork>>().To<ForkService>();
+            _kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
+
+            _kernel.Bind<IColorService>().To<ColorsService>();
+            _kernel.Bind<IService<ForkEntity>>().To<ForkService>();
            
         }
     }

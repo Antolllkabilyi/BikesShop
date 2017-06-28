@@ -1,6 +1,13 @@
 ﻿using System.Collections.Generic;
 using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
+using BicycleColorViewModel = BikesShop.Models.BicycleColorViewModel;
+using BicycleViewModel = BikesShop.Models.BicycleViewModel;
+using BicycleSizeViewModel = BikesShop.Models.BicycleSizeViewModel;
+using BrandViewModel = BikesShop.Models.BrandViewModel;
+using ForkViewModel = BikesShop.Models.ForkViewModel;
+using FrameViewModel = BikesShop.Models.FrameViewModel;
+using GenderViewModel = BikesShop.Models.GenderViewModel;
 
 
 namespace BikesShop
@@ -9,75 +16,75 @@ namespace BikesShop
     {
         protected override void Seed(BicycleContext context)
         {
-            var brands = new List<Brand>
+            var brands = new List<BrandEntity>
             {
-                new Brand{Name = "Fuji"},
-                new Brand{Name = "Breezer"},
-                new Brand{Name = "Marin Bicycles"},
-                new Brand{Name = "Diamondback"}
+                new BrandEntity{Name = "Fuji"},
+                new BrandEntity{Name = "Breezer"},
+                new BrandEntity{Name = "Marin Bicycles"},
+                new BrandEntity{Name = "Diamondback"}
             };
             brands.ForEach(s => context.Brands.Add(s));
             context.SaveChanges();
 
-            var genders = new List<Gender>
+            var genders = new List<GenderEntity>
             {
-                new Gender{Name = "Man"},
-                new Gender{Name = "Boys"},
-                new Gender{Name = "Woman"},
-                new Gender{Name = "Girl"},
-                new Gender{Name = "Unisex"},
+                new GenderEntity{Name = "Man"},
+                new GenderEntity{Name = "Boys"},
+                new GenderEntity{Name = "Woman"},
+                new GenderEntity{Name = "Girl"},
+                new GenderEntity{Name = "Unisex"},
             };
 
             genders.ForEach(s => context.Genders.Add(s));
             context.SaveChanges();
 
-            var frameMaterials = new List<FrameMaterial>
+            var frameMaterials = new List<FrameMaterialEntity>
             {
-                new FrameMaterial{Material = "Steel"},
-                new FrameMaterial{Material = "Aluminum"},
-                new FrameMaterial{Material = "Carbon"},
+                new FrameMaterialEntity{Material = "Steel"},
+                new FrameMaterialEntity{Material = "Aluminum"},
+                new FrameMaterialEntity{Material = "Carbon"},
             };
 
             frameMaterials.ForEach(s => context.FrameMaterials.Add(s));
             context.SaveChanges();
 
 
-            var colors = new List<BicycleColor>
+            var colors = new List<BicycleColorEntity>
             {
-                new BicycleColor{Name="Green"},
-                new BicycleColor{Name="Red"},
-                new BicycleColor{Name="Blue"},
-                new BicycleColor{Name="White"},
-                new BicycleColor{Name="Black"},
-                new BicycleColor{Name="Yellow"},
+                new BicycleColorEntity{Name="Green"},
+                new BicycleColorEntity{Name="Red"},
+                new BicycleColorEntity{Name="Blue"},
+                new BicycleColorEntity{Name="White"},
+                new BicycleColorEntity{Name="Black"},
+                new BicycleColorEntity{Name="Yellow"},
             };
 
             colors.ForEach(s => context.BicycleColors.Add(s));
             context.SaveChanges();
 
-            var forks = new List<Fork>
+            var forks = new List<ForkEntity>
             {
-                new Fork{Name = "HY-FK-AL02", ForkBrand = "HY", ForkType = "RockShox"},
-                new Fork{Name = "XCM", ForkBrand = "SR Suntour", ForkType = "Suspension"},
-                new Fork{Name = "MLH-3", ForkBrand = "Spartan", ForkType = "Fox"},
+                new ForkEntity{Name = "HY-FK-AL02", ForkBrand = "HY", ForkType = "RockShox"},
+                new ForkEntity{Name = "XCM", ForkBrand = "SR Suntour", ForkType = "Suspension"},
+                new ForkEntity{Name = "MLH-3", ForkBrand = "Spartan", ForkType = "Fox"},
             };
             forks.ForEach(s => context.Forks.Add(s));
             context.SaveChanges();
 
-            var sizes = new List<BicycleSize>
+            var sizes = new List<BicycleSizeEntity>
             {
-                new BicycleSize{Name = "S" , Size = 11.5},
-                new BicycleSize{Name = "M" , Size = 16},
-                new BicycleSize{Name = "L" , Size = 19.5},
-                new BicycleSize{Name = "XL" , Size = 21}
+                new BicycleSizeEntity{Name = "S" , Size = 11.5},
+                new BicycleSizeEntity{Name = "M" , Size = 16},
+                new BicycleSizeEntity{Name = "L" , Size = 19.5},
+                new BicycleSizeEntity{Name = "XL" , Size = 21}
             };
 
             sizes.ForEach(s => context.BicycleSize.Add(s));
             context.SaveChanges();
 
-            var bicycles = new List<Bicycle>
+            var bicycles = new List<BicycleEntity>
             {
-                new Bicycle
+                new BicycleEntity
                 {
                     ModelYear = 2016,
                     Price = 15000,
@@ -86,14 +93,14 @@ namespace BikesShop
                     FrameMaterialId = 3,
                     ForkId = 1,
                     SizeId = 2,
-                    Colors = new List<BicycleColor>
+                    Colors = new List<BicycleColorEntity>
                     {
                         colors.Find(c=>c.Id==1),
                         colors.Find(c=>c.Id==2),
                     }
                 },
 
-                new Bicycle
+                new BicycleEntity
                 {
                     ModelYear = 2017,
                     Price = 17000,
@@ -102,7 +109,7 @@ namespace BikesShop
                     FrameMaterialId = 2,
                     ForkId = 2,
                     SizeId = 4,
-                    Colors = new List<BicycleColor>
+                    Colors = new List<BicycleColorEntity>
                     {
                         colors.Find(c=>c.Id==3)
                     }

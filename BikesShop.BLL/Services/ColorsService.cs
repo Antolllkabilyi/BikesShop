@@ -1,66 +1,130 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using BikesShop.BLL.DTO;
 using BikesShop.BLL.Interfaces;
-using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
+using BikesShop.DAL.Interfaces;
+
 
 namespace BikesShop.BLL.Services
 {
-    public class ColorsService : IService<BicycleColor>
+    public class ColorsService : IColorService
     {
-        private readonly BicycleContext _db;
-        private DbSet<BicycleColor> _colors;
+        private readonly IUnitOfWork _db;
 
-        public ColorsService()
+        public ColorsService(IUnitOfWork unitOfWork)
         {
-            _db = new BicycleContext();
-            _colors = _db.BicycleColors;
+            _db = unitOfWork;
         }
 
-        public BicycleColor GetById(int? id)
+        public BicycleColorDTO GetById(int? id)
         {
-            if (id == null || id < 0 || id >= _colors.Count())
+            if (id == null || id < 0)
                 return null;
 
-            return _colors.Find(id);
-        }
+            var color = _db.BicycleColors.Get(id);
 
-        public IEnumerable<BicycleColor> GetAll()
-        {
-            return _colors.ToList();
-        }
-
-        public IEnumerable<BicycleColor> GetPartFromIndex(int index, int count)
-        {
-            if (index < 0 || count < 0 || index > _colors.Count())
+            if (color == null)
                 return null;
 
-            return _colors.OrderBy(f => f.Id).Skip(index).Take(count);
+            BicycleColorDTO colorDto = new BicycleColorDTO
+            {
+                Id = color.Id,
+                Name = color.Name
+            };
+
+            return colorDto;
         }
 
-        public void Create(BicycleColor obj)
+        public IEnumerable<BicycleColorDTO> GetAll()
         {
-            _colors.Add(obj);
-            _db.SaveChanges();
+            var colors = _db.BicycleColors.GetAll();
+            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
+
+            foreach (var color in colors)
+            {
+                BicycleColorDTO colorDto = new BicycleColorDTO
+                {
+                    Id = color.Id,
+                    Name = color.Name
+                };
+
+                colorsDto.Add(colorDto);
+            }
+
+            return colorsDto;
+        }
+
+        public IEnumerable<BicycleColorDTO> GetPartFromIndex(int index, int count)
+        {
+            var colors = _db.BicycleColors.GetPartFromIndex(index, count);
+            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
+
+            foreach (var color in colors)
+            {
+                BicycleColorDTO colorDto = new BicycleColorDTO
+                {
+                    Id = color.Id,
+                    Name = color.Name
+                };
+
+                colorsDto.Add(colorDto);
+            }
+
+            return colorsDto;
+        }
+
+        public IEnumerable<BicycleColorDTO> Find(string predicate)
+        {
+            var colors = _db.BicycleColors.Find(predicate);
+
+            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
+
+            foreach (var color in colors)
+            {
+                BicycleColorDTO colorDto = new BicycleColorDTO
+                {
+                    Id = color.Id,
+                    Name = color.Name
+                };
+
+                colorsDto.Add(colorDto);
+            }
+
+            return colorsDto;
+        }
+
+        public void Create(BicycleColorDTO obj)
+        {
+            BicycleColorEntity color = new BicycleColorEntity
+            {
+                Id = obj.Id,
+                Name = obj.Name
+            };
+
+            _db.BicycleColors.Create(color);
+            _db.Save();
         }
 
         public void Delete(int id)
         {
-            BicycleColor color = GetById(id);
-            _colors.Remove(color);
-            _db.SaveChanges();
+            _db.BicycleColors.Delete(id);
+            _db.Save();
         }
 
-        public void Update(BicycleColor obj)
+        public void Update(BicycleColorDTO obj)
         {
-            _db.Entry(obj).State = EntityState.Modified;
-            _db.SaveChanges();
+            BicycleColorEntity color = new BicycleColorEntity
+            {
+                Id = obj.Id,
+                Name = obj.Name
+            };
+
+            _db.BicycleColors.Update(color);
+            _db.Save();
         }
 
         public void Dispose()
         {
-            _colors = null;
             _db.Dispose();
         }
     }

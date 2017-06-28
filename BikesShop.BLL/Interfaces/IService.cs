@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BikesShop.BLL.Interfaces
 {
@@ -7,6 +8,7 @@ namespace BikesShop.BLL.Interfaces
         T GetById(int? id);
         IEnumerable<T> GetAll();
         IEnumerable<T> GetPartFromIndex(int index, int count);
+        IEnumerable<T> Find(string predicate);
         void Create(T obj);
         void Delete(int id);
         void Update(T obj);

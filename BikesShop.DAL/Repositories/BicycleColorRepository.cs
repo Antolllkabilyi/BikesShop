@@ -7,7 +7,7 @@ using BikesShop.DAL.Interfaces;
 
 namespace BikesShop.DAL.Repositories
 {
-    public class BicycleColorRepository : IRepository<BicycleColor>
+    public class BicycleColorRepository : IColorRepository
     {
         private readonly BicycleContext _db;
         public BicycleColorRepository(BicycleContext context)
@@ -15,36 +15,50 @@ namespace BikesShop.DAL.Repositories
             _db = context;
         }
 
-        public void Create(BicycleColor item)
+        public void Create(BicycleColorEntity item)
         {
             _db.BicycleColors.Add(item);
         }
 
         public void Delete(int id)
         {
-            BicycleColor bicycleColor = _db.BicycleColors.Find(id);
-            if (bicycleColor != null)
+            BicycleColorEntity bicycleColorEntity = _db.BicycleColors.Find(id);
+            if (bicycleColorEntity != null)
             {
-                _db.BicycleColors.Remove(bicycleColor);
+                _db.BicycleColors.Remove(bicycleColorEntity);
             }
         }
 
-        public IEnumerable<BicycleColor> Find(Func<BicycleColor, bool> predicate)
+        public IEnumerable<BicycleColorEntity> GetPartFromIndex(int index, int count)
         {
-            return _db.BicycleColors.Where(predicate).ToList();
+            if (index < 0 || count < 0 || index > _db.BicycleColors.Count())
+                return null;
+
+            return _db.BicycleColors.OrderBy(f => f.Id).Skip(index).Take(count);
         }
 
-        public BicycleColor Get(int id)
+        public IEnumerable<BicycleColorEntity> Find(string predicate)
         {
+           // return _db.BicycleColors.Where(t => t.Name.Contains(predicate)).ToList();
+           return from item in _db.BicycleColors
+                  where item.Name.Contains(predicate)
+                  select item;
+        }
+
+        public BicycleColorEntity Get(int? id)
+        {
+            if (id == null || id < 0 || id >= _db.BicycleColors.Count())
+                return null;
+
             return _db.BicycleColors.Find(id);
         }
 
-        public IEnumerable<BicycleColor> GetAll()
+        public IEnumerable<BicycleColorEntity> GetAll()
         {
             return _db.BicycleColors.ToList();
         }
 
-        public void Update(BicycleColor item)
+        public void Update(BicycleColorEntity item)
         {
             _db.Entry(item).State = System.Data.Entity.EntityState.Modified;
         }

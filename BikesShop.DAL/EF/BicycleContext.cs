@@ -7,13 +7,13 @@ namespace BikesShop.DAL.EF
     public class BicycleContext : DbContext
     {
        
-        public DbSet<Bicycle> Bicycles { get; set; }
-        public DbSet<Brand> Brands { get; set; }
-        public DbSet<Gender> Genders { get; set; }
-        public DbSet<FrameMaterial> FrameMaterials { get; set; }
-        public DbSet<BicycleSize> BicycleSize { get; set; }
-        public DbSet<BicycleColor> BicycleColors { get; set; }
-        public DbSet<Fork> Forks { get; set; }
+        public DbSet<BicycleEntity> Bicycles { get; set; }
+        public DbSet<BrandEntity> Brands { get; set; }
+        public DbSet<GenderEntity> Genders { get; set; }
+        public DbSet<FrameMaterialEntity> FrameMaterials { get; set; }
+        public DbSet<BicycleSizeEntity> BicycleSize { get; set; }
+        public DbSet<BicycleColorEntity> BicycleColors { get; set; }
+        public DbSet<ForkEntity> Forks { get; set; }
 
         public BicycleContext(string connectionString) : base(connectionString)
         {
@@ -27,7 +27,7 @@ namespace BikesShop.DAL.EF
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Entity<Bicycle>().HasMany(b => b.Colors);
+            modelBuilder.Entity<BicycleEntity>().HasMany(b => b.Colors);
         }
 
     }

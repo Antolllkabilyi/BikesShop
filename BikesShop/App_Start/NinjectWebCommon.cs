@@ -10,8 +10,7 @@ namespace BikesShop.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using BikesShop.BLL.Infrastructure;
-    using Ninject.Modules;
+    using BikesShop.BLL.Util;
 
     public static class NinjectWebCommon 
     {
@@ -41,14 +40,13 @@ namespace BikesShop.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var modules = new INinjectModule[] { new ServiceModule("BicycleContext") };
+           // var modules = new INinjectModule[] { new ServiceModule("BicycleContext") };
 
             var kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -65,7 +63,7 @@ namespace BikesShop.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            System.Web.Mvc.DependencyResolver.SetResolver(new Util.NinjectDependencyResolver(kernel));
+            System.Web.Mvc.DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }        
     }
 }

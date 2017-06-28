@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using BikesShop.BLL.Services;
 using BikesShop.DAL.Entities;
+using ForkViewModel = BikesShop.Models.ForkViewModel;
 
 namespace BikesShop.Controllers
 {
@@ -22,12 +23,12 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fork fork = _forkService.GetById(id);
-            if (fork == null)
+            ForkEntity forkEntity = _forkService.GetById(id);
+            if (forkEntity == null)
             {
                 return HttpNotFound();
             }
-            return View(fork);
+            return View(forkEntity);
         }
 
         // GET: Forks/Create
@@ -41,15 +42,15 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,ForkType,ForkBrand")] Fork fork)
+        public ActionResult Create([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkEntity forkEntity)
         {
             if (ModelState.IsValid)
             {
-                _forkService.Create(fork);
+                _forkService.Create(forkEntity);
                 return RedirectToAction("Index");
             }
 
-            return View(fork);
+            return View(forkEntity);
         }
 
         // GET: Forks/Edit/5
@@ -59,12 +60,12 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fork fork = _forkService.GetById(id);
-            if (fork == null)
+            ForkEntity forkEntity = _forkService.GetById(id);
+            if (forkEntity == null)
             {
                 return HttpNotFound();
             }
-            return View(fork);
+            return View(forkEntity);
         }
 
         // POST: Forks/Edit/5
@@ -72,14 +73,14 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ForkType,ForkBrand")] Fork fork)
+        public ActionResult Edit([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkEntity forkEntity)
         {
             if (ModelState.IsValid)
             {
-                _forkService.Update(fork);
+                _forkService.Update(forkEntity);
                 return RedirectToAction("Index");
             }
-            return View(fork);
+            return View(forkEntity);
         }
 
         // GET: Forks/Delete/5
@@ -89,12 +90,12 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fork fork = _forkService.GetById(id);
-            if (fork == null)
+            ForkEntity forkEntity = _forkService.GetById(id);
+            if (forkEntity == null)
             {
                 return HttpNotFound();
             }
-            return View(fork);
+            return View(forkEntity);
         }
 
         // POST: Forks/Delete/5

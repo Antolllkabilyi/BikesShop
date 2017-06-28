@@ -1,6 +1,6 @@
-﻿namespace BikesShop.DAL.Entities
+﻿namespace BikesShop.Models
 {
-    public class Fork
+    public class ForkViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

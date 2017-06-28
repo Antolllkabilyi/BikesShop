@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using BikesShop.BLL.Interfaces;
 using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
+using ForkDTO = BikesShop.BLL.DTO.ForkDTO;
 
 namespace BikesShop.BLL.Services
 {
-    public class ForkService : IService<Fork>
+    public class ForkService : IForkService
     {
         private readonly BicycleContext _db;
-        private DbSet<Fork> _forks;
+        private DbSet<ForkEntity> _forks;
 
         public ForkService()
         {
@@ -18,7 +20,7 @@ namespace BikesShop.BLL.Services
             _forks = _db.Forks;
         }
 
-        public Fork GetById(int? id)
+        public ForkEntity GetById(int? id)
         {
             if (id == null || id < 0 || id >= _forks.Count())
                 return null;
@@ -26,12 +28,12 @@ namespace BikesShop.BLL.Services
             return _forks.Find(id);
         }
 
-        public IEnumerable<Fork> GetAll()
+        public IEnumerable<ForkEntity> GetAll()
         {
             return _forks.ToList();
         }
 
-        public IEnumerable<Fork> GetPartFromIndex(int index, int count)
+        public IEnumerable<ForkEntity> GetPartFromIndex(int index, int count)
         {
             if (index < 0 || count < 0 || index > _forks.Count())
                 return null;
@@ -39,22 +41,27 @@ namespace BikesShop.BLL.Services
             return _forks.OrderBy(f=>f.Id).Skip(index).Take(count);
         }
 
-        public void Create(Fork fork)
+        public IEnumerable<ForkEntity> Find(string predicate)
         {
-            _forks.Add(fork);
+            return null;// _forks.Find(predicate);
+        }
+
+        public void Create(ForkEntity forkEntity)
+        {
+            _forks.Add(forkEntity);
             _db.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            Fork fork = GetById(id);
-            _forks.Remove(fork);
+            ForkEntity forkEntity = GetById(id);
+            _forks.Remove(forkEntity);
             _db.SaveChanges();
         }
 
-        public void Update(Fork fork)
+        public void Update(ForkEntity forkEntity)
         {
-            _db.Entry(fork).State = EntityState.Modified;
+            _db.Entry(forkEntity).State = EntityState.Modified;
             _db.SaveChanges();
         }
 

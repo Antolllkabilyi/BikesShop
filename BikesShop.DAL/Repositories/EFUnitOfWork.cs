@@ -12,13 +12,18 @@ namespace BikesShop.DAL.Repositories
         private BicycleColorRepository _bicycleColorRepository;
         private ForkRepository _forksRepository;
 
+        public EFUnitOfWork()
+        {
+            _db = new BicycleContext("BicycleContext");
+        }
+
 
         public EFUnitOfWork(string connectionString)
         {
             _db = new BicycleContext(connectionString);
         }
 
-        public IRepository<BicycleColor> BicycleColors
+        public IColorRepository BicycleColors
         {
             get
             {
@@ -28,7 +33,7 @@ namespace BikesShop.DAL.Repositories
             }
         }
 
-        public IRepository<Fork> Forks
+        public IRepository<ForkEntity> Forks
         {
             get
             {
