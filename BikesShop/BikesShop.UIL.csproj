@@ -237,7 +237,6 @@
     <Content Include="Views\Forks\Index.cshtml" />
     <Content Include="Views\BicycleColors\Create.cshtml" />
     <Content Include="Views\BicycleColors\Delete.cshtml" />
-    <Content Include="Views\BicycleColors\Details.cshtml" />
     <Content Include="Views\BicycleColors\Edit.cshtml" />
     <Content Include="Views\BicycleColors\Index.cshtml" />
   </ItemGroup>

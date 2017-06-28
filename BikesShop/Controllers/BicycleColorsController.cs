@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using BikesShop.BLL.DTO;
@@ -17,44 +18,29 @@ namespace BikesShop.Controllers
         }
 
         // GET: BicycleColors
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            var colors = new List<BicycleColorViewModel>();
-            var dbcolors = _colorsService.GetAll();
-            foreach (var color in dbcolors)
+            List<BicycleColorViewModel> colors;
+            if (!string.IsNullOrEmpty(searchString))
             {
-                colors.Add(new BicycleColorViewModel
-                {
-                    Id = color.Id,
-                    Name = color.Name
-                });
+                colors = _colorsService.Find(searchString)
+                    .Select(t => new BicycleColorViewModel
+                    {
+                        Id = t.Id,
+                        Name = t.Name
+                    }).ToList();
+            }
+            else
+            {
+                colors = _colorsService.GetAll()
+                    .Select(t => new BicycleColorViewModel
+                    {
+                        Id = t.Id,
+                        Name = t.Name
+                    }).ToList();
             }
 
             return View(colors);
-        }
-
-        // GET: BicycleColors/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var bicycleColor = _colorsService.GetById(id);
-
-
-            if (bicycleColor == null)
-            {
-                return HttpNotFound();
-            }
-
-            BicycleColorViewModel color = new BicycleColorViewModel
-            {
-                Id = bicycleColor.Id,
-                Name = bicycleColor.Name
-            };
-            return View(color);
         }
 
         // GET: BicycleColors/Create
@@ -150,7 +136,7 @@ namespace BikesShop.Controllers
                 Id = bicycleColor.Id,
                 Name = bicycleColor.Name
             };
-          
+
             return View(color);
         }
 

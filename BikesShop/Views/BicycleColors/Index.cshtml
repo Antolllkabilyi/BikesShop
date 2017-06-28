@@ -8,11 +8,19 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "BicycleColors", FormMethod.Get))
+    {
+        <p> 
+            Name: @Html.TextBox("searchString")
+            <input type="submit" value="Filter" />
+        </p>
+    }
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.Name)*@
+            @Html.DisplayName("Color")
         </th>
         <th></th>
     </tr>
@@ -25,7 +33,6 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>

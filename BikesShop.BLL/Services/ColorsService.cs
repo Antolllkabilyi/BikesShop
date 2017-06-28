@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BikesShop.BLL.DTO;
 using BikesShop.BLL.Interfaces;
 using BikesShop.DAL.Entities;
 using BikesShop.DAL.Interfaces;
-
 
 namespace BikesShop.BLL.Services
 {
@@ -37,58 +37,41 @@ namespace BikesShop.BLL.Services
 
         public IEnumerable<BicycleColorDTO> GetAll()
         {
-            var colors = _db.BicycleColors.GetAll();
-            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
-
-            foreach (var color in colors)
-            {
-                BicycleColorDTO colorDto = new BicycleColorDTO
+            List<BicycleColorDTO> colorsDto = _db.BicycleColors.GetAll()
+                .Select(t => new BicycleColorDTO
                 {
-                    Id = color.Id,
-                    Name = color.Name
-                };
-
-                colorsDto.Add(colorDto);
-            }
+                    Id = t.Id,
+                    Name = t.Name
+                })
+                .ToList();
 
             return colorsDto;
         }
 
         public IEnumerable<BicycleColorDTO> GetPartFromIndex(int index, int count)
         {
-            var colors = _db.BicycleColors.GetPartFromIndex(index, count);
-            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
-
-            foreach (var color in colors)
-            {
-                BicycleColorDTO colorDto = new BicycleColorDTO
+            List<BicycleColorDTO> colorsDto = _db.BicycleColors
+                .GetPartFromIndex(index, count)
+                .Select(t => new BicycleColorDTO
                 {
-                    Id = color.Id,
-                    Name = color.Name
-                };
-
-                colorsDto.Add(colorDto);
-            }
+                    Id = t.Id,
+                    Name = t.Name
+                })
+                .ToList();
 
             return colorsDto;
         }
 
         public IEnumerable<BicycleColorDTO> Find(string predicate)
         {
-            var colors = _db.BicycleColors.Find(predicate);
-
-            List<BicycleColorDTO> colorsDto = new List<BicycleColorDTO>();
-
-            foreach (var color in colors)
-            {
-                BicycleColorDTO colorDto = new BicycleColorDTO
-                {
-                    Id = color.Id,
-                    Name = color.Name
-                };
-
-                colorsDto.Add(colorDto);
-            }
+            List<BicycleColorDTO> colorsDto = _db.BicycleColors
+                  .Find(predicate)
+                  .Select(t => new BicycleColorDTO
+                  {
+                      Id = t.Id,
+                      Name = t.Name
+                  })
+                  .ToList();
 
             return colorsDto;
         }
