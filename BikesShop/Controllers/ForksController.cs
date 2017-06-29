@@ -1,33 +1,50 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
-using BikesShop.BLL.Services;
-using BikesShop.DAL.Entities;
+using BikesShop.BLL.DTO;
+using BikesShop.BLL.Interfaces;
+using BikesShop.Models;
 
 namespace BikesShop.Controllers
 {
     public class ForksController : Controller
     {
-       private readonly ForkService _forkService = new ForkService();
+        private readonly IForkService _forkService;
 
-        // GET: Forks
-        public ActionResult Index()
+        public ForksController(IForkService forkService)
         {
-            return View(_forkService.GetAll());
+            _forkService = forkService;
         }
 
-        // GET: Forks/Details/5
-        public ActionResult Details(int? id)
+        // GET: Forks
+        public ActionResult Index(string searchString)
         {
-            if (id == null)
+            List<ForkViewModel> forks;
+            if (!string.IsNullOrEmpty(searchString))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                forks = _forkService.Find(searchString)
+                    .Select(t => new ForkViewModel
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        ForkBrand = t.ForkBrand,
+                        ForkType = t.ForkType
+                    }).ToList();
             }
-            ForkEntity forkEntity = _forkService.GetById(id);
-            if (forkEntity == null)
+            else
             {
-                return HttpNotFound();
+                forks = _forkService.GetAll()
+                    .Select(t => new ForkViewModel
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        ForkBrand = t.ForkBrand,
+                        ForkType = t.ForkType
+                    }).ToList();
             }
-            return View(forkEntity);
+
+            return View(forks);
         }
 
         // GET: Forks/Create
@@ -41,15 +58,23 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkEntity forkEntity)
+        public ActionResult Create([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkViewModel forkViewModel)
         {
             if (ModelState.IsValid)
             {
-                _forkService.Create(forkEntity);
+                ForkDTO fork = new ForkDTO
+                {
+                    Id = forkViewModel.Id,
+                    Name = forkViewModel.Name,
+                    ForkBrand = forkViewModel.ForkBrand,
+                    ForkType = forkViewModel.ForkType
+                };
+
+                _forkService.Create(fork);
                 return RedirectToAction("Index");
             }
 
-            return View(forkEntity);
+            return View(forkViewModel);
         }
 
         // GET: Forks/Edit/5
@@ -59,12 +84,23 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ForkEntity forkEntity = _forkService.GetById(id);
-            if (forkEntity == null)
+
+            var forkDto = _forkService.GetById(id);
+
+            if (forkDto == null)
             {
                 return HttpNotFound();
             }
-            return View(forkEntity);
+
+            ForkViewModel fork = new ForkViewModel
+            {
+                Id = forkDto.Id,
+                Name = forkDto.Name,
+                ForkBrand = forkDto.ForkBrand,
+                ForkType = forkDto.ForkType
+            };
+
+            return View(fork);
         }
 
         // POST: Forks/Edit/5
@@ -72,14 +108,29 @@ namespace BikesShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkEntity forkEntity)
+        public ActionResult Edit([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkViewModel forkViewModel)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
             {
-                _forkService.Update(forkEntity);
+                _forkService.Update(forkViewModel);
                 return RedirectToAction("Index");
             }
-            return View(forkEntity);
+            return View(forkViewModel);*/
+
+            if (ModelState.IsValid)
+            {
+                ForkDTO forkDto = new ForkDTO
+                {
+                    Id = forkViewModel.Id,
+                    Name = forkViewModel.Name,
+                    ForkBrand = forkViewModel.ForkBrand,
+                    ForkType = forkViewModel.ForkType
+                };
+                _forkService.Update(forkDto);
+
+                return RedirectToAction("Index");
+            }
+            return View(forkViewModel);
         }
 
         // GET: Forks/Delete/5
@@ -89,12 +140,23 @@ namespace BikesShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ForkEntity forkEntity = _forkService.GetById(id);
-            if (forkEntity == null)
+
+            var forkDto = _forkService.GetById(id);
+
+            if (forkDto == null)
             {
                 return HttpNotFound();
             }
-            return View(forkEntity);
+
+            ForkViewModel fork = new ForkViewModel
+            {
+                Id = forkDto.Id,
+                Name = forkDto.Name,
+                ForkBrand = forkDto.ForkBrand,
+                ForkType = forkDto.ForkType
+            };
+
+            return View(fork);
         }
 
         // POST: Forks/Delete/5

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using BikesShop.BLL.Interfaces;
 using BikesShop.BLL.Services;
-using BikesShop.DAL.Entities;
 using BikesShop.DAL.Interfaces;
 using BikesShop.DAL.Repositories;
 using Ninject;

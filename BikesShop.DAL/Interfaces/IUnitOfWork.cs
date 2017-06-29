@@ -1,5 +1,4 @@
 ﻿using System;
-using BikesShop.DAL.Entities;
 
 namespace BikesShop.DAL.Interfaces
 {

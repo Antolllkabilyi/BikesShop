@@ -223,7 +223,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Forks\Create.cshtml" />
     <Content Include="Views\Forks\Delete.cshtml" />
-    <Content Include="Views\Forks\Details.cshtml" />
     <Content Include="Views\Forks\Edit.cshtml" />
     <Content Include="Views\Forks\Index.cshtml" />
     <Content Include="Views\BicycleColors\Create.cshtml" />
