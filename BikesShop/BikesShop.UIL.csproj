@@ -158,7 +158,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BicyclesInitializer.cs" />
     <Compile Include="Controllers\BicycleColorsController.cs" />
-    <Compile Include="Controllers\BicyclesController.cs" />
     <Compile Include="Controllers\ForksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -168,10 +167,7 @@
     <Compile Include="Models\BicycleViewModel.cs" />
     <Compile Include="Models\BicycleSizeViewModel.cs" />
     <Compile Include="Models\BicycleTypeViewModel.cs" />
-    <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ForkViewModel.cs" />
-    <Compile Include="Models\FrameViewModel.cs" />
-    <Compile Include="Models\GenderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,11 +221,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bicycles\Create.cshtml" />
-    <Content Include="Views\Bicycles\Delete.cshtml" />
-    <Content Include="Views\Bicycles\Details.cshtml" />
-    <Content Include="Views\Bicycles\Edit.cshtml" />
-    <Content Include="Views\Bicycles\Index.cshtml" />
     <Content Include="Views\Forks\Create.cshtml" />
     <Content Include="Views\Forks\Delete.cshtml" />
     <Content Include="Views\Forks\Details.cshtml" />

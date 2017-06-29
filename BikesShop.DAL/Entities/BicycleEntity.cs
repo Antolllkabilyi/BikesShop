@@ -14,14 +14,8 @@ namespace BikesShop.DAL.Entities
         [DataType(DataType.Currency)]
         public int Price { get; set; }
 
-        public int? BrandId { get; set; }
-        public virtual BrandEntity Brand { get; set; }
-
-        public int? GenderId { get; set; }
-        public virtual GenderEntity Gender { get; set; }
-
-        public int? FrameMaterialId { get; set; }
-        public virtual FrameMaterialEntity FrameMaterial { get; set; }
+        public int? TypeId { get; set; }
+        public virtual BicycleTypeEntity Type { get; set; }
 
         public int? ForkId { get; set; }
         public virtual ForkEntity Fork { get; set; }
@@ -29,7 +23,8 @@ namespace BikesShop.DAL.Entities
         public int? SizeId { get; set; }
         public virtual BicycleSizeEntity Size { get; set; }
 
-        public virtual List<BicycleColorEntity> Colors { get; set; }
+        public int? ColorId { get; set; }
+        public virtual BicycleColorEntity Color { get; set; }
       
     }
 }

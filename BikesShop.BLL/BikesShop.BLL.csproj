@@ -86,10 +86,7 @@
     <Compile Include="DTO\BicycleDTO.cs" />
     <Compile Include="DTO\BicycleSizeDTO.cs" />
     <Compile Include="DTO\BicycleTypeDTO.cs" />
-    <Compile Include="DTO\BrandDTO.cs" />
     <Compile Include="DTO\ForkDTO.cs" />
-    <Compile Include="DTO\FrameMaterialDTO.cs" />
-    <Compile Include="DTO\GenderDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Interfaces\IColorService.cs" />
     <Compile Include="Interfaces\IForkService.cs" />

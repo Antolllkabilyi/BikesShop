@@ -14,14 +14,8 @@ namespace BikesShop.Models
         [DataType(DataType.Currency)]
         public int Price { get; set; }
 
-        public int? BrandId { get; set; }
-        public virtual BrandViewModel Brand { get; set; }
-
-        public int? GenderId { get; set; }
-        public virtual GenderViewModel Gender { get; set; }
-
-        public int? FrameMaterialId { get; set; }
-        public virtual FrameViewModel FrameMaterial { get; set; }
+        public int? TypeId { get; set; }
+        public virtual BicycleTypeViewModel Type { get; set; }
 
         public int? ForkId { get; set; }
         public virtual ForkViewModel Fork { get; set; }
@@ -29,7 +23,8 @@ namespace BikesShop.Models
         public int? SizeId { get; set; }
         public virtual BicycleSizeViewModel Size { get; set; }
 
-        public virtual List<BicycleColorViewModel> Colors { get; set; }
+        public int? ColorId { get; set; }
+        public virtual BicycleColorViewModel Color { get; set; }
       
     }
 }

@@ -1,14 +1,6 @@
 ﻿using System.Collections.Generic;
 using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
-using BicycleColorViewModel = BikesShop.Models.BicycleColorViewModel;
-using BicycleViewModel = BikesShop.Models.BicycleViewModel;
-using BicycleSizeViewModel = BikesShop.Models.BicycleSizeViewModel;
-using BrandViewModel = BikesShop.Models.BrandViewModel;
-using ForkViewModel = BikesShop.Models.ForkViewModel;
-using FrameViewModel = BikesShop.Models.FrameViewModel;
-using GenderViewModel = BikesShop.Models.GenderViewModel;
-
 
 namespace BikesShop
 {
@@ -16,38 +8,18 @@ namespace BikesShop
     {
         protected override void Seed(BicycleContext context)
         {
-            var brands = new List<BrandEntity>
-            {
-                new BrandEntity{Name = "Fuji"},
-                new BrandEntity{Name = "Breezer"},
-                new BrandEntity{Name = "Marin Bicycles"},
-                new BrandEntity{Name = "Diamondback"}
-            };
-            brands.ForEach(s => context.Brands.Add(s));
-            context.SaveChanges();
 
-            var genders = new List<GenderEntity>
+            var type = new List<BicycleTypeEntity>
             {
-                new GenderEntity{Name = "Man"},
-                new GenderEntity{Name = "Boys"},
-                new GenderEntity{Name = "Woman"},
-                new GenderEntity{Name = "Girl"},
-                new GenderEntity{Name = "Unisex"},
+                new BicycleTypeEntity{Name = "Road"},
+                new BicycleTypeEntity{Name = "Mountain"},
+                new BicycleTypeEntity{Name = "Cruiser"},
+                new BicycleTypeEntity{Name = "Hybrid"},
+                new BicycleTypeEntity{Name = "Fitness"},
             };
 
-            genders.ForEach(s => context.Genders.Add(s));
+            type.ForEach(s => context.Types.Add(s));
             context.SaveChanges();
-
-            var frameMaterials = new List<FrameMaterialEntity>
-            {
-                new FrameMaterialEntity{Material = "Steel"},
-                new FrameMaterialEntity{Material = "Aluminum"},
-                new FrameMaterialEntity{Material = "Carbon"},
-            };
-
-            frameMaterials.ForEach(s => context.FrameMaterials.Add(s));
-            context.SaveChanges();
-
 
             var colors = new List<BicycleColorEntity>
             {
@@ -88,31 +60,20 @@ namespace BikesShop
                 {
                     ModelYear = 2016,
                     Price = 15000,
-                    BrandId = 1,
-                    GenderId = 2,
-                    FrameMaterialId = 3,
+                    TypeId = 1,
                     ForkId = 1,
                     SizeId = 2,
-                    Colors = new List<BicycleColorEntity>
-                    {
-                        colors.Find(c=>c.Id==1),
-                        colors.Find(c=>c.Id==2),
-                    }
+                    ColorId = 5
                 },
 
                 new BicycleEntity
                 {
                     ModelYear = 2017,
                     Price = 17000,
-                    BrandId = 2,
-                    GenderId = 4,
-                    FrameMaterialId = 2,
+                    TypeId = 2,
                     ForkId = 2,
                     SizeId = 4,
-                    Colors = new List<BicycleColorEntity>
-                    {
-                        colors.Find(c=>c.Id==3)
-                    }
+                    ColorId = 2
                 }
             };
             bicycles.ForEach(s => context.Bicycles.Add(s));

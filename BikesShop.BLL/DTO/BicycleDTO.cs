@@ -14,14 +14,8 @@ namespace BikesShop.BLL.DTO
         [DataType(DataType.Currency)]
         public int Price { get; set; }
 
-        public int? BrandId { get; set; }
-        public virtual BrandDTO Brand { get; set; }
-
-        public int? GenderId { get; set; }
-        public virtual GenderDTO Gender { get; set; }
-
-        public int? FrameMaterialId { get; set; }
-        public virtual FrameMaterialDTO FrameMaterial { get; set; }
+        public int? TypeId { get; set; }
+        public virtual BicycleTypeDTO Type { get; set; }
 
         public int? ForkId { get; set; }
         public virtual ForkDTO Fork { get; set; }
@@ -29,7 +23,8 @@ namespace BikesShop.BLL.DTO
         public int? SizeId { get; set; }
         public virtual BicycleSizeDTO Size { get; set; }
 
-        public virtual List<BicycleColorDTO> Colors { get; set; }
+        public int? ColorId { get; set; }
+        public virtual BicycleColorDTO Color { get; set; }
       
     }
 }

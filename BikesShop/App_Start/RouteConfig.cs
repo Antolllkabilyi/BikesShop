@@ -12,7 +12,7 @@ namespace BikesShop
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Bicycles", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "BicycleColors", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
