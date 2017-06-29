@@ -159,6 +159,7 @@
     <Compile Include="BicyclesInitializer.cs" />
     <Compile Include="Controllers\BicycleColorsController.cs" />
     <Compile Include="Controllers\BicycleController.cs" />
+    <Compile Include="Controllers\BicycleSizeController.cs" />
     <Compile Include="Controllers\BicycleTypeController.cs" />
     <Compile Include="Controllers\ForksController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
@@ -241,6 +242,10 @@
     <Content Include="Views\BicycleType\Delete.cshtml" />
     <Content Include="Views\BicycleType\Edit.cshtml" />
     <Content Include="Views\BicycleType\Index.cshtml" />
+    <Content Include="Views\BicycleSize\Create.cshtml" />
+    <Content Include="Views\BicycleSize\Delete.cshtml" />
+    <Content Include="Views\BicycleSize\Edit.cshtml" />
+    <Content Include="Views\BicycleSize\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
