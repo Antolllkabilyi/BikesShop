@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BicyclesInitializer.cs" />
     <Compile Include="Controllers\BicycleColorsController.cs" />
+    <Compile Include="Controllers\BicycleController.cs" />
     <Compile Include="Controllers\ForksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,6 +230,11 @@
     <Content Include="Views\BicycleColors\Delete.cshtml" />
     <Content Include="Views\BicycleColors\Edit.cshtml" />
     <Content Include="Views\BicycleColors\Index.cshtml" />
+    <Content Include="Views\Bicycle\Create.cshtml" />
+    <Content Include="Views\Bicycle\Delete.cshtml" />
+    <Content Include="Views\Bicycle\Details.cshtml" />
+    <Content Include="Views\Bicycle\Edit.cshtml" />
+    <Content Include="Views\Bicycle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

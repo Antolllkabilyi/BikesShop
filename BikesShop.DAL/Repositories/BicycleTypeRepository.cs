@@ -21,7 +21,7 @@ namespace BikesShop.DAL.Repositories
 
         public BicycleTypeEntity Get(int? id)
         {
-            if (id == null || id < 0 || id >= _db.Types.Count())
+            if (id == null || id < 0)
                 return null;
 
             return _db.Types.Find(id);

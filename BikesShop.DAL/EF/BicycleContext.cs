@@ -24,6 +24,5 @@ namespace BikesShop.DAL.EF
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
     }
 }

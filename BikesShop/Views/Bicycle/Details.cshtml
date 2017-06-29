@@ -1,0 +1,66 @@
+﻿@model BikesShop.Models.BicycleViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BicycleViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Color.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fork.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fork.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

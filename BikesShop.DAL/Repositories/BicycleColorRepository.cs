@@ -46,7 +46,7 @@ namespace BikesShop.DAL.Repositories
 
         public BicycleColorEntity Get(int? id)
         {
-            if (id == null || id < 0 || id >= _db.BicycleColors.Count())
+            if (id == null || id < 0 )
                 return null;
 
             return _db.BicycleColors.Find(id);

@@ -110,13 +110,6 @@ namespace BikesShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,ForkType,ForkBrand")] ForkViewModel forkViewModel)
         {
-            /*if (ModelState.IsValid)
-            {
-                _forkService.Update(forkViewModel);
-                return RedirectToAction("Index");
-            }
-            return View(forkViewModel);*/
-
             if (ModelState.IsValid)
             {
                 ForkDTO forkDto = new ForkDTO
