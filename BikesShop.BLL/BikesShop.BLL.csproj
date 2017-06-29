@@ -95,6 +95,8 @@
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\ISizeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BicycleService.cs" />
+    <Compile Include="Services\BicycleTypeService.cs" />
     <Compile Include="Services\ColorsService.cs" />
     <Compile Include="Services\ForkService.cs" />
     <Compile Include="Services\SizeService.cs" />

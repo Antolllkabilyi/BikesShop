@@ -30,9 +30,11 @@ namespace BikesShop.BLL.Util
         {
             _kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
 
+            _kernel.Bind<IBicycleService>().To<BicycleService>();
+            _kernel.Bind<IBicycleTypeService>().To<BicycleTypeService>();
+            _kernel.Bind<ISizeService>().To<SizeService>();
             _kernel.Bind<IColorService>().To<ColorsService>();
             _kernel.Bind<IForkService>().To<ForkService>();
-           
         }
     }
 }
