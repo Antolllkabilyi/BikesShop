@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
@@ -7,7 +6,7 @@ using BikesShop.DAL.Interfaces;
 
 namespace BikesShop.DAL.Repositories
 {
-    public class ForkRepository : IRepository<ForkEntity>
+    public class ForkRepository : IForkRepository
     {
         private readonly BicycleContext _db;
         public ForkRepository(BicycleContext context)
@@ -31,7 +30,10 @@ namespace BikesShop.DAL.Repositories
 
         public IEnumerable<ForkEntity> GetPartFromIndex(int index, int count)
         {
-            throw new NotImplementedException();
+            if (index < 0 || count < 0 || index > _db.Forks.Count())
+                return null;
+
+            return _db.Forks.OrderBy(f => f.Id).Skip(index).Take(count);
         }
 
         public IEnumerable<ForkEntity> Find(string predicate)
@@ -48,11 +50,6 @@ namespace BikesShop.DAL.Repositories
                    select item;
         }
 
-        public ForkEntity Get(int id)
-        {
-            return _db.Forks.Find(id);
-        }
-
         public IEnumerable<ForkEntity> GetAll()
         {
             return _db.Forks.ToList();
@@ -60,7 +57,10 @@ namespace BikesShop.DAL.Repositories
 
         public ForkEntity Get(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null || id < 0 )
+                return null;
+
+            return _db.Forks.Find(id);
         }
 
         public void Update(ForkEntity item)

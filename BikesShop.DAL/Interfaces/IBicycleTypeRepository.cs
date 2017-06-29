@@ -2,7 +2,7 @@
 
 namespace BikesShop.DAL.Interfaces
 {
-    interface IBicycleTypeRepository : IRepository<BicycleTypeEntity>
+    public interface IBicycleTypeRepository : IRepository<BicycleTypeEntity>
     {
     }
 }

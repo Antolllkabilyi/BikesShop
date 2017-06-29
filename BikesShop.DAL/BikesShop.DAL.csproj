@@ -63,6 +63,9 @@
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BicycleColorRepository.cs" />
+    <Compile Include="Repositories\BicycleRepository.cs" />
+    <Compile Include="Repositories\BicycleSizeRepository.cs" />
+    <Compile Include="Repositories\BicycleTypeRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\ForkRepository.cs" />
   </ItemGroup>

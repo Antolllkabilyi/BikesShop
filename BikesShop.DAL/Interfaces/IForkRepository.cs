@@ -2,7 +2,7 @@
 
 namespace BikesShop.DAL.Interfaces
 {
-    interface IForkRepository : IRepository<ForkEntity>
+    public interface IForkRepository : IRepository<ForkEntity>
     {
     }
 }

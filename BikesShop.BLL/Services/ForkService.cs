@@ -1,73 +1,123 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
+using BikesShop.BLL.DTO;
 using BikesShop.BLL.Interfaces;
-using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;
-using ForkDTO = BikesShop.BLL.DTO.ForkDTO;
+using BikesShop.DAL.Interfaces;
 
 namespace BikesShop.BLL.Services
 {
     public class ForkService : IForkService
     {
-        private readonly BicycleContext _db;
-        private DbSet<ForkEntity> _forks;
+        private readonly IUnitOfWork _db;
 
-        public ForkService()
+        public ForkService(IUnitOfWork unitOfWork)
         {
-            _db = new BicycleContext();
-            _forks = _db.Forks;
+            _db = unitOfWork;
         }
 
-        public ForkEntity GetById(int? id)
+        public ForkDTO GetById(int? id)
         {
-            if (id == null || id < 0 || id >= _forks.Count())
+            if (id == null || id < 0)
                 return null;
 
-            return _forks.Find(id);
-        }
+            var fork = _db.Forks.Get(id);
 
-        public IEnumerable<ForkEntity> GetAll()
-        {
-            return _forks.ToList();
-        }
-
-        public IEnumerable<ForkEntity> GetPartFromIndex(int index, int count)
-        {
-            if (index < 0 || count < 0 || index > _forks.Count())
+            if (fork == null)
                 return null;
 
-            return _forks.OrderBy(f=>f.Id).Skip(index).Take(count);
+            ForkDTO forkDto = new ForkDTO
+            {
+                Id = fork.Id,
+                Name = fork.Name,
+                ForkBrand = fork.ForkBrand,
+                ForkType = fork.ForkType
+            };
+
+            return forkDto;
         }
 
-        public IEnumerable<ForkEntity> Find(string predicate)
+        public IEnumerable<ForkDTO> GetAll()
         {
-            return null;// _forks.Find(predicate);
+            List<ForkDTO> forks = _db.Forks.GetAll()
+                .Select(fork => new ForkDTO
+                {
+                    Id = fork.Id,
+                    Name = fork.Name,
+                    ForkBrand = fork.ForkBrand,
+                    ForkType = fork.ForkType
+                })
+                .ToList();
+
+            return forks;
         }
 
-        public void Create(ForkEntity forkEntity)
+        public IEnumerable<ForkDTO> GetPartFromIndex(int index, int count)
         {
-            _forks.Add(forkEntity);
-            _db.SaveChanges();
+            List<ForkDTO> forks = _db.Forks.GetPartFromIndex(index,count)
+                .Select(fork => new ForkDTO
+                {
+                    Id = fork.Id,
+                    Name = fork.Name,
+                    ForkBrand = fork.ForkBrand,
+                    ForkType = fork.ForkType
+                })
+                .ToList();
+
+            return forks;
+        }
+
+        public IEnumerable<ForkDTO> Find(string predicate)
+        {
+            List<ForkDTO> forks = _db.Forks.Find(predicate)
+                .Select(fork => new ForkDTO
+                {
+                    Id = fork.Id,
+                    Name = fork.Name,
+                    ForkBrand = fork.ForkBrand,
+                    ForkType = fork.ForkType
+                })
+                .ToList();
+
+            return forks;
+        }
+
+        public void Create(ForkDTO obj)
+        {
+            ForkEntity fork = new ForkEntity
+            {
+                Id = obj.Id,
+                Name = obj.Name,
+                ForkBrand = obj.ForkBrand,
+                ForkType = obj.ForkType
+            };
+
+            _db.Forks.Create(fork);
+            _db.Save();
         }
 
         public void Delete(int id)
         {
-            ForkEntity forkEntity = GetById(id);
-            _forks.Remove(forkEntity);
-            _db.SaveChanges();
+            _db.Forks.Delete(id);
+            _db.Save();
         }
 
-        public void Update(ForkEntity forkEntity)
+        public void Update(ForkDTO obj)
         {
-            _db.Entry(forkEntity).State = EntityState.Modified;
-            _db.SaveChanges();
+            ForkEntity fork = new ForkEntity()
+            {
+                Id = obj.Id,
+                Name = obj.Name,
+                ForkBrand = obj.ForkBrand,
+                ForkType = obj.ForkType
+            };
+
+            _db.Forks.Update(fork);
+            _db.Save();
         }
 
         public void Dispose()
         {
-            _forks = null;
             _db.Dispose();
         }
     }

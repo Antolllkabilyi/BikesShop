@@ -1,15 +1,16 @@
 ﻿using System;
-using System.Data.Entity;
 using BikesShop.DAL.Entities;
-using BikesShop.DAL.Repositories;
 
 namespace BikesShop.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        IBicycleRepository Bicycles { get; }
+        IBicycleSizeRepository BicyclesSize { get; }
+        IBicycleTypeRepository BicycleType { get; }
         IColorRepository BicycleColors { get; }
-        IRepository<ForkEntity> Forks { get; }
-        
+        IForkRepository Forks { get; }
+
         void Save();
     }
 }

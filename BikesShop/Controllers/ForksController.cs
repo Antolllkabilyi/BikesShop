@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using BikesShop.BLL.Services;
 using BikesShop.DAL.Entities;
-using ForkViewModel = BikesShop.Models.ForkViewModel;
 
 namespace BikesShop.Controllers
 {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BikesShop.Models
+﻿namespace BikesShop.Models
 {
     public class BicycleColorViewModel
     {

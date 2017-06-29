@@ -1,6 +1,5 @@
 ﻿using System;
 using BikesShop.DAL.EF;
-using BikesShop.DAL.Entities;
 using BikesShop.DAL.Interfaces;
 
 namespace BikesShop.DAL.Repositories
@@ -9,43 +8,37 @@ namespace BikesShop.DAL.Repositories
     {
         private readonly BicycleContext _db;
         private bool _disposed;
-        private BicycleColorRepository _bicycleColorRepository;
-        private ForkRepository _forksRepository;
+        private IBicycleRepository _bicycleRepository;
+        private IBicycleSizeRepository _bicycleSizeRepository;
+        private IBicycleTypeRepository _bicycleTypeRepository;
+        private IColorRepository _bicycleColorRepository;
+        private IForkRepository _forksRepository;
 
         public EFUnitOfWork()
         {
-            _db = new BicycleContext("BicycleContext");
+            _db = new BicycleContext();
         }
-
-
+        
         public EFUnitOfWork(string connectionString)
         {
             _db = new BicycleContext(connectionString);
         }
 
-        public IColorRepository BicycleColors
-        {
-            get
-            {
-                if(_bicycleColorRepository == null)
-                    _bicycleColorRepository = new BicycleColorRepository(_db);
-                return _bicycleColorRepository;
-            }
-        }
-
-        public IRepository<ForkEntity> Forks
-        {
-            get
-            {
-                if (_forksRepository == null)
-                    _forksRepository = new ForkRepository(_db);
-                return _forksRepository;
-            }
-        }
+        public IBicycleRepository Bicycles => _bicycleRepository ?? (_bicycleRepository = new BicycleRepository(_db));
+        public IBicycleSizeRepository BicyclesSize => _bicycleSizeRepository ?? (_bicycleSizeRepository = new BicycleSizeRepository(_db));
+        public IBicycleTypeRepository BicycleType => _bicycleTypeRepository ?? (_bicycleTypeRepository = new BicycleTypeRepository(_db));
+        public IColorRepository BicycleColors => _bicycleColorRepository ?? (_bicycleColorRepository = new BicycleColorRepository(_db));
+        public IForkRepository Forks => _forksRepository ?? (_forksRepository = new ForkRepository(_db));
 
         public void Save()
         {
             _db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public virtual void Dispose(bool disposed)
@@ -58,12 +51,6 @@ namespace BikesShop.DAL.Repositories
                 }
                 _disposed = true;
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

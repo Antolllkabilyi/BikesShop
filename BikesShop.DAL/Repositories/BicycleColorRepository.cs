@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using BikesShop.DAL.EF;
 using BikesShop.DAL.Entities;

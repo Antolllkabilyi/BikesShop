@@ -2,7 +2,7 @@
 
 namespace BikesShop.BLL.Interfaces
 {
-    public interface IForkService : IService<ForkDTO>
+    public interface ISizeService : IService<BicycleSizeDTO>
     {
     }
 }

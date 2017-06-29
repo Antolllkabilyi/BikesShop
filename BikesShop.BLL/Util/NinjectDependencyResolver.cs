@@ -31,7 +31,7 @@ namespace BikesShop.BLL.Util
             _kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
 
             _kernel.Bind<IColorService>().To<ColorsService>();
-            _kernel.Bind<IService<ForkEntity>>().To<ForkService>();
+            _kernel.Bind<IForkService>().To<ForkService>();
            
         }
     }
