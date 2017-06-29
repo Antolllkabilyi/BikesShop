@@ -160,7 +160,7 @@
     <Compile Include="Controllers\BicycleColorsController.cs" />
     <Compile Include="Controllers\BicycleController.cs" />
     <Compile Include="Controllers\ForksController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +169,7 @@
     <Compile Include="Models\BicycleSizeViewModel.cs" />
     <Compile Include="Models\BicycleTypeViewModel.cs" />
     <Compile Include="Models\ForkViewModel.cs" />
+    <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +220,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Forks\Create.cshtml" />
     <Content Include="Views\Forks\Delete.cshtml" />
     <Content Include="Views\Forks\Edit.cshtml" />
@@ -235,6 +233,9 @@
     <Content Include="Views\Bicycle\Details.cshtml" />
     <Content Include="Views\Bicycle\Edit.cshtml" />
     <Content Include="Views\Bicycle\Index.cshtml" />
+    <Content Include="Views\Purchases\Delete.cshtml" />
+    <Content Include="Views\Purchases\Details.cshtml" />
+    <Content Include="Views\Purchases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

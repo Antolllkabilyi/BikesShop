@@ -13,6 +13,7 @@ namespace BikesShop.DAL.Repositories
         private IBicycleTypeRepository _bicycleTypeRepository;
         private IColorRepository _bicycleColorRepository;
         private IForkRepository _forksRepository;
+        private IPurchaseRepository _purchaseRepository;
 
         public EFUnitOfWork()
         {
@@ -29,6 +30,7 @@ namespace BikesShop.DAL.Repositories
         public IBicycleTypeRepository BicycleType => _bicycleTypeRepository ?? (_bicycleTypeRepository = new BicycleTypeRepository(_db));
         public IColorRepository BicycleColors => _bicycleColorRepository ?? (_bicycleColorRepository = new BicycleColorRepository(_db));
         public IForkRepository Forks => _forksRepository ?? (_forksRepository = new ForkRepository(_db));
+        public IPurchaseRepository Purchases => _purchaseRepository ?? (_purchaseRepository = new PurchaseRepository(_db));
 
         public void Save()
         {

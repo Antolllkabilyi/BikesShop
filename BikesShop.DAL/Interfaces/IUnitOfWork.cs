@@ -9,6 +9,7 @@ namespace BikesShop.DAL.Interfaces
         IBicycleTypeRepository BicycleType { get; }
         IColorRepository BicycleColors { get; }
         IForkRepository Forks { get; }
+        IPurchaseRepository Purchases { get; }
 
         void Save();
     }

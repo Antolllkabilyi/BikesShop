@@ -34,6 +34,7 @@ namespace BikesShop.BLL.Util
             _kernel.Bind<ISizeService>().To<SizeService>();
             _kernel.Bind<IColorService>().To<ColorsService>();
             _kernel.Bind<IForkService>().To<ForkService>();
+            _kernel.Bind<IPurchaseService>().To<PurchaseService>();
         }
     }
 }

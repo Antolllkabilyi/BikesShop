@@ -11,6 +11,7 @@ namespace BikesShop.DAL.EF
         public DbSet<BicycleSizeEntity> BicycleSize { get; set; }
         public DbSet<BicycleColorEntity> BicycleColors { get; set; }
         public DbSet<ForkEntity> Forks { get; set; }
+        public DbSet<PurchaseEntity> Purchase { get; set; }
 
         public BicycleContext(string connectionString) : base(connectionString)
         {

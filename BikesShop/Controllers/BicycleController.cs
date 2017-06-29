@@ -9,20 +9,24 @@ namespace BikesShop.Controllers
 {
     public class BicycleController : Controller
     {
+        private const int USER_ID = 1;
         private readonly IBicycleService _bicycleService;
         private readonly IBicycleTypeService _bicycleTypeService;
         private readonly IColorService _colorService;
         private readonly IForkService _forkService;
         private readonly ISizeService _sizeService;
+        private readonly IPurchaseService _purchaseService;
 
         public BicycleController(IBicycleService bicycleService, IBicycleTypeService bicycleTypeService,
-            IColorService colorService, IForkService forkService, ISizeService sizeService)
+            IColorService colorService, IForkService forkService, ISizeService sizeService,
+            IPurchaseService purchaseService)
         {
             _bicycleService = bicycleService;
             _bicycleTypeService = bicycleTypeService;
             _colorService = colorService;
             _forkService = forkService;
             _sizeService = sizeService;
+            _purchaseService = purchaseService;
         }
 
         // GET: BicycleViewModels
@@ -179,6 +183,25 @@ namespace BikesShop.Controllers
             _bicycleService.Delete(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult AddPurchase(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            PurchaseDTO purchase = new PurchaseDTO
+            {
+                UserId = USER_ID,
+                IsPaid = false,
+                BicycleId = (int)id
+            };
+            _purchaseService.Create(purchase);
+
+            return RedirectToAction("Index");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

@@ -54,11 +54,13 @@
     <Compile Include="Entities\BicycleSizeEntity.cs" />
     <Compile Include="Entities\BicycleTypeEntity.cs" />
     <Compile Include="Entities\ForkEntity.cs" />
+    <Compile Include="Entities\PurchaseEntity.cs" />
     <Compile Include="Interfaces\IBicycleRepository.cs" />
     <Compile Include="Interfaces\IBicycleSizeRepository.cs" />
     <Compile Include="Interfaces\IBicycleTypeRepository.cs" />
     <Compile Include="Interfaces\IColorRepository.cs" />
     <Compile Include="Interfaces\IForkRepository.cs" />
+    <Compile Include="Interfaces\IPurchaseRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Repositories\BicycleTypeRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\ForkRepository.cs" />
+    <Compile Include="Repositories\PurchaseRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

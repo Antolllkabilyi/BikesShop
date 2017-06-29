@@ -87,11 +87,13 @@
     <Compile Include="DTO\BicycleSizeDTO.cs" />
     <Compile Include="DTO\BicycleTypeDTO.cs" />
     <Compile Include="DTO\ForkDTO.cs" />
+    <Compile Include="DTO\PurchaseDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Interfaces\IBicycleService.cs" />
     <Compile Include="Interfaces\IBicycleTypeService.cs" />
     <Compile Include="Interfaces\IColorService.cs" />
     <Compile Include="Interfaces\IForkService.cs" />
+    <Compile Include="Interfaces\IPurchaseService.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\ISizeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Services\BicycleTypeService.cs" />
     <Compile Include="Services\ColorsService.cs" />
     <Compile Include="Services\ForkService.cs" />
+    <Compile Include="Services\PurchaseService.cs" />
     <Compile Include="Services\SizeService.cs" />
     <Compile Include="Util\NinjectDependencyResolver.cs" />
   </ItemGroup>

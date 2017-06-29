@@ -1,0 +1,53 @@
+﻿@model BikesShop.Models.PurchaseViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PurchaseViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicycle.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicycle.Type.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicycle.ModelYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicycle.ModelYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicycle.Fork)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicycle.Fork.ForkType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicycle.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicycle.Color.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bicycle.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bicycle.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
